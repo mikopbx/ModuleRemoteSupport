@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">MIKO Remote Support</title>
+  <path fill="#2185d0" d="M64 8a46 46 0 0 0-46 46v20a14 14 0 0 0 14 14h8V58H28v-4a36 36 0 0 1 72 0v4H88v30h12v4c0 11-9 20-20 20H67v8h13a28 28 0 0 0 28-28V54A46 46 0 0 0 64 8Z"/>
+  <path fill="#21ba45" d="M64 30 42 39v17c0 17 9 31 22 38 13-7 22-21 22-38V39l-22-9Zm10 24-12 15-8-7 5-6 3 3 7-10 5 5Z"/>
+</svg>

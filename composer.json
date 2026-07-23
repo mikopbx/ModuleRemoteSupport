@@ -1,0 +1,27 @@
+{
+  "name": "miko/module-remote-support",
+  "description": "Temporary recorded remote support sessions for MikoPBX",
+  "require": {
+    "php": "~8.4",
+    "ext-phalcon": "^5.0",
+    "mikopbx/core": ">=2025.1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Modules\\ModuleRemoteSupport\\": "/"
+    }
+  },
+  "type": "application",
+  "keywords": [
+    "mikopbx",
+    "remote-support",
+    "ssh"
+  ],
+  "license": "GPL-3.0-or-later",
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "8.4"
+    }
+  }
+}

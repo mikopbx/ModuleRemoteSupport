@@ -1,0 +1,56 @@
+.module-remote-support {
+    margin: 0 auto;
+    max-width: 58rem;
+}
+
+.module-remote-support .remote-support-header {
+    min-height: 7rem;
+}
+
+.module-remote-support .remote-support-live:empty {
+    display: none;
+}
+
+.module-remote-support .remote-support-state {
+    min-height: 13rem;
+    padding: 2rem;
+}
+
+.module-remote-support .remote-support-code {
+    font-family: monospace;
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.25;
+    margin: 1rem 0;
+    overflow-wrap: anywhere;
+}
+
+.module-remote-support .remote-support-countdown {
+    font-variant-numeric: tabular-nums;
+    margin-top: 1rem;
+}
+
+.module-remote-support .remote-support-consent p:last-child {
+    margin-bottom: 0;
+}
+
+.module-remote-support .remote-support-contacts .button {
+    margin-bottom: 0.5rem;
+}
+
+.module-remote-support .remote-support-contact-fallback {
+    margin-top: 0.75rem;
+}
+
+@media (max-width: 600px) {
+    .module-remote-support .remote-support-state {
+        padding: 1.25rem;
+    }
+
+    .module-remote-support .remote-support-contacts .button {
+        display: block;
+        margin-right: 0;
+        width: 100%;
+    }
+}

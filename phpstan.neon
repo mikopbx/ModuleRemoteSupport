@@ -1,0 +1,22 @@
+parameters:
+    level: max
+    paths:
+        - App
+        - Lib
+        - Models
+        - Setup
+        - bin
+    scanDirectories:
+        - ../../Core/src
+        - ../../Core/vendor/phalcon/ide-stubs/src
+    excludePaths:
+        - build
+        - Tests
+    parallel:
+        jobSize: 20
+        processTimeout: 300.0
+    tmpDir: /private/tmp/phpstan-ModuleRemoteSupport
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        -
+            message: '#Path in require_once\(\) "Globals\.php" is not a file or it does not exist#'
