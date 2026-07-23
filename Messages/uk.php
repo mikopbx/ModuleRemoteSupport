@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Віддалена підтримка',
+    'BreadcrumbModuleRemoteSupport' => 'Віддалена підтримка',
+    'SubHeaderModuleRemoteSupport' => 'Створіть тимчасовий захищений сеанс для фахівця технічної підтримки.',
     'module_remote_support_Title' => 'Віддалена підтримка MikoPBX',
     'module_remote_support_Description' => 'Створіть тимчасовий захищений сеанс для фахівця технічної підтримки.',
     'module_remote_support_ConsentRoot' => 'Фахівець отримає тимчасовий root-доступ до цієї АТС.',

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Etätuki',
+    'BreadcrumbModuleRemoteSupport' => 'Etätuki',
+    'SubHeaderModuleRemoteSupport' => 'Luo teknisen tuen asiantuntijalle väliaikainen suojattu istunto.',
     'module_remote_support_Title' => 'MikoPBX-etätuki',
     'module_remote_support_Description' => 'Luo teknisen tuen asiantuntijalle väliaikainen suojattu istunto.',
     'module_remote_support_ConsentRoot' => 'Asiantuntija saa väliaikaisen root-pääsyn tähän PBX-järjestelmään.',

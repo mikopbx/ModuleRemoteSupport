@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'დისტანციური მხარდაჭერა',
+    'BreadcrumbModuleRemoteSupport' => 'დისტანციური მხარდაჭერა',
+    'SubHeaderModuleRemoteSupport' => 'შექმენით დროებითი დაცული სესია ტექნიკური მხარდაჭერის სპეციალისტისთვის.',
     'module_remote_support_Title' => 'MikoPBX დისტანციური მხარდაჭერა',
     'module_remote_support_Description' => 'შექმენით დროებითი დაცული სესია ტექნიკური მხარდაჭერის სპეციალისტისთვის.',
     'module_remote_support_ConsentRoot' => 'სპეციალისტი მიიღებს დროებით root წვდომას ამ PBX-ზე.',

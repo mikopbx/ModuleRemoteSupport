@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Fjärrsupport',
+    'BreadcrumbModuleRemoteSupport' => 'Fjärrsupport',
+    'SubHeaderModuleRemoteSupport' => 'Skapa en tillfällig säker session för en teknisk supportspecialist.',
     'module_remote_support_Title' => 'MikoPBX-fjärrsupport',
     'module_remote_support_Description' => 'Skapa en tillfällig säker session för en teknisk supportspecialist.',
     'module_remote_support_ConsentRoot' => 'Specialisten får tillfällig root-åtkomst till denna PBX.',

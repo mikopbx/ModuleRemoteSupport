@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => '远程支持',
+    'BreadcrumbModuleRemoteSupport' => '远程支持',
+    'SubHeaderModuleRemoteSupport' => '为技术支持专家创建临时安全会话。',
     'module_remote_support_Title' => 'MikoPBX 远程支持',
     'module_remote_support_Description' => '为技术支持专家创建临时安全会话。',
     'module_remote_support_ConsentRoot' => '专家将获得此 PBX 的临时 root 访问权限。',

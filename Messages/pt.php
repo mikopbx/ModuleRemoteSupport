@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Suporte remoto',
+    'BreadcrumbModuleRemoteSupport' => 'Suporte remoto',
+    'SubHeaderModuleRemoteSupport' => 'Crie uma sessão segura temporária para um especialista de suporte técnico.',
     'module_remote_support_Title' => 'Suporte remoto MikoPBX',
     'module_remote_support_Description' => 'Crie uma sessão segura temporária para um especialista de suporte técnico.',
     'module_remote_support_ConsentRoot' => 'O especialista receberá acesso root temporário a este PBX.',

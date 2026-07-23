@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'リモートサポート',
+    'BreadcrumbModuleRemoteSupport' => 'リモートサポート',
+    'SubHeaderModuleRemoteSupport' => '技術サポート担当者用の一時的な安全なセッションを作成します。',
     'module_remote_support_Title' => 'MikoPBX リモートサポート',
     'module_remote_support_Description' => '技術サポート担当者用の一時的な安全なセッションを作成します。',
     'module_remote_support_ConsentRoot' => '担当者はこのPBXへの一時的なrootアクセスを取得します。',

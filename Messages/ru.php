@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Удалённая поддержка',
+    'BreadcrumbModuleRemoteSupport' => 'Удалённая поддержка',
+    'SubHeaderModuleRemoteSupport' => 'Создайте временный защищённый сеанс для специалиста технической поддержки.',
     'module_remote_support_Title' => 'Удалённая поддержка MikoPBX',
     'module_remote_support_Description' => 'Создайте временный защищённый сеанс для специалиста технической поддержки.',
     'module_remote_support_ConsentRoot' => 'Специалист получит временный доступ root к этой АТС.',

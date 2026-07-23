@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => '원격 지원',
+    'BreadcrumbModuleRemoteSupport' => '원격 지원',
+    'SubHeaderModuleRemoteSupport' => '기술 지원 담당자를 위한 임시 보안 세션을 만듭니다.',
     'module_remote_support_Title' => 'MikoPBX 원격 지원',
     'module_remote_support_Description' => '기술 지원 담당자를 위한 임시 보안 세션을 만듭니다.',
     'module_remote_support_ConsentRoot' => '담당자는 이 PBX에 대한 임시 root 접근 권한을 받습니다.',

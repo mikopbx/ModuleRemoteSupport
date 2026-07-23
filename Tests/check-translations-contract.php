@@ -96,6 +96,8 @@ $referencedKeys = array_merge(
     $referencedKeys,
     [
         'AdditionalMenuItemModuleRemoteSupport',
+        'BreadcrumbModuleRemoteSupport',
+        'SubHeaderModuleRemoteSupport',
         'module_remote_support_ErrorAllocation',
         'module_remote_support_ErrorCleanup',
         'module_remote_support_ErrorDisconnected',

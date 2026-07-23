@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => '遠端支援',
+    'BreadcrumbModuleRemoteSupport' => '遠端支援',
+    'SubHeaderModuleRemoteSupport' => '為技術支援專員建立臨時安全工作階段。',
     'module_remote_support_Title' => 'MikoPBX 遠端支援',
     'module_remote_support_Description' => '為技術支援專員建立臨時安全工作階段。',
     'module_remote_support_ConsentRoot' => '專員將取得此 PBX 的臨時 root 存取權限。',

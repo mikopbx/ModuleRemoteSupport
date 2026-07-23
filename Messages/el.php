@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Απομακρυσμένη υποστήριξη',
+    'BreadcrumbModuleRemoteSupport' => 'Απομακρυσμένη υποστήριξη',
+    'SubHeaderModuleRemoteSupport' => 'Δημιουργήστε μια προσωρινή ασφαλή συνεδρία για έναν ειδικό τεχνικής υποστήριξης.',
     'module_remote_support_Title' => 'Απομακρυσμένη υποστήριξη MikoPBX',
     'module_remote_support_Description' => 'Δημιουργήστε μια προσωρινή ασφαλή συνεδρία για έναν ειδικό τεχνικής υποστήριξης.',
     'module_remote_support_ConsentRoot' => 'Ο ειδικός θα αποκτήσει προσωρινή πρόσβαση root σε αυτό το PBX.',

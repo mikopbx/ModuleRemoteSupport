@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Ondersteuning op afstand',
+    'BreadcrumbModuleRemoteSupport' => 'Ondersteuning op afstand',
+    'SubHeaderModuleRemoteSupport' => 'Maak een tijdelijke beveiligde sessie voor een technische supportspecialist.',
     'module_remote_support_Title' => 'MikoPBX-ondersteuning op afstand',
     'module_remote_support_Description' => 'Maak een tijdelijke beveiligde sessie voor een technische supportspecialist.',
     'module_remote_support_ConsentRoot' => 'De specialist krijgt tijdelijk root-toegang tot deze PBX.',

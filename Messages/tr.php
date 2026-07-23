@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Uzaktan destek',
+    'BreadcrumbModuleRemoteSupport' => 'Uzaktan destek',
+    'SubHeaderModuleRemoteSupport' => 'Teknik destek uzmanı için geçici ve güvenli bir oturum oluşturun.',
     'module_remote_support_Title' => 'MikoPBX uzaktan destek',
     'module_remote_support_Description' => 'Teknik destek uzmanı için geçici ve güvenli bir oturum oluşturun.',
     'module_remote_support_ConsentRoot' => 'Uzman bu PBX’e geçici root erişimi alacaktır.',

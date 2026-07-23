@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Udaljena podrška',
+    'BreadcrumbModuleRemoteSupport' => 'Udaljena podrška',
+    'SubHeaderModuleRemoteSupport' => 'Stvorite privremenu sigurnu sesiju za stručnjaka tehničke podrške.',
     'module_remote_support_Title' => 'MikoPBX udaljena podrška',
     'module_remote_support_Description' => 'Stvorite privremenu sigurnu sesiju za stručnjaka tehničke podrške.',
     'module_remote_support_ConsentRoot' => 'Stručnjak će dobiti privremeni root pristup ovoj PBX centrali.',

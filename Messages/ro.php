@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Asistență la distanță',
+    'BreadcrumbModuleRemoteSupport' => 'Asistență la distanță',
+    'SubHeaderModuleRemoteSupport' => 'Creați o sesiune securizată temporară pentru un specialist de asistență tehnică.',
     'module_remote_support_Title' => 'Asistență la distanță MikoPBX',
     'module_remote_support_Description' => 'Creați o sesiune securizată temporară pentru un specialist de asistență tehnică.',
     'module_remote_support_ConsentRoot' => 'Specialistul va primi acces root temporar la acest PBX.',

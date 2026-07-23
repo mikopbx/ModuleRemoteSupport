@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Hỗ trợ từ xa',
+    'BreadcrumbModuleRemoteSupport' => 'Hỗ trợ từ xa',
+    'SubHeaderModuleRemoteSupport' => 'Tạo một phiên bảo mật tạm thời cho chuyên viên hỗ trợ kỹ thuật.',
     'module_remote_support_Title' => 'Hỗ trợ từ xa MikoPBX',
     'module_remote_support_Description' => 'Tạo một phiên bảo mật tạm thời cho chuyên viên hỗ trợ kỹ thuật.',
     'module_remote_support_ConsentRoot' => 'Chuyên viên sẽ nhận quyền truy cập root tạm thời vào PBX này.',

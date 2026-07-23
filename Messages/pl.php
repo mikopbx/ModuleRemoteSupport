@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Pomoc zdalna',
+    'BreadcrumbModuleRemoteSupport' => 'Pomoc zdalna',
+    'SubHeaderModuleRemoteSupport' => 'Utwórz tymczasową bezpieczną sesję dla specjalisty pomocy technicznej.',
     'module_remote_support_Title' => 'Pomoc zdalna MikoPBX',
     'module_remote_support_Description' => 'Utwórz tymczasową bezpieczną sesję dla specjalisty pomocy technicznej.',
     'module_remote_support_ConsentRoot' => 'Specjalista otrzyma tymczasowy dostęp root do tej centrali PBX.',

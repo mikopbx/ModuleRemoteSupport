@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'AdditionalMenuItemModuleRemoteSupport' => 'Алсын дэмжлэг',
+    'BreadcrumbModuleRemoteSupport' => 'Алсын дэмжлэг',
+    'SubHeaderModuleRemoteSupport' => 'Техникийн дэмжлэгийн мэргэжилтэнд түр хамгаалалттай сесс үүсгэнэ үү.',
     'module_remote_support_Title' => 'MikoPBX алсын дэмжлэг',
     'module_remote_support_Description' => 'Техникийн дэмжлэгийн мэргэжилтэнд түр хамгаалалттай сесс үүсгэнэ үү.',
     'module_remote_support_ConsentRoot' => 'Мэргэжилтэн энэ PBX-д түр root хандалт авна.',
