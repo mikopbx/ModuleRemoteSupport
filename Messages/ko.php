@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => '원격 지원',
     'SubHeaderModuleRemoteSupport' => '기술 지원 담당자를 위한 임시 보안 세션을 만듭니다.',
     'module_remote_support_Title' => 'MikoPBX 원격 지원',
-    'module_remote_support_Description' => '기술 지원 담당자를 위한 임시 보안 세션을 만듭니다.',
     'module_remote_support_ConsentRoot' => '담당자는 이 PBX에 대한 임시 root 접근 권한을 받습니다.',
     'module_remote_support_ConsentEightHours' => '접근 권한은 8시간 후 자동으로 종료됩니다.',
     'module_remote_support_ConsentRecording' => '보안 및 감사를 위해 담당자의 작업이 기록될 수 있습니다.',

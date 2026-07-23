@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Uzaktan destek',
     'SubHeaderModuleRemoteSupport' => 'Teknik destek uzmanı için geçici ve güvenli bir oturum oluşturun.',
     'module_remote_support_Title' => 'MikoPBX uzaktan destek',
-    'module_remote_support_Description' => 'Teknik destek uzmanı için geçici ve güvenli bir oturum oluşturun.',
     'module_remote_support_ConsentRoot' => 'Uzman bu PBX’e geçici root erişimi alacaktır.',
     'module_remote_support_ConsentEightHours' => 'Erişim sekiz saat sonra otomatik olarak sona erecektir.',
     'module_remote_support_ConsentRecording' => 'Uzmanın işlemleri güvenlik ve denetim amacıyla kaydedilebilir.',

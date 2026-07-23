@@ -63,7 +63,7 @@ final class SshProcess implements SshProcessInterface
             '-N',
             '-T',
             '-R',
-            sprintf('%d:127.0.0.1:22', $allocation->tunnelPort),
+            sprintf('127.0.0.1:%d:127.0.0.1:22', $allocation->tunnelPort),
             $allocation->tunnelUser . '@' . RemoteSupportConfig::SUPPORT_HOST,
         ];
 

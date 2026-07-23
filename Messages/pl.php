@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Pomoc zdalna',
     'SubHeaderModuleRemoteSupport' => 'Utwórz tymczasową bezpieczną sesję dla specjalisty pomocy technicznej.',
     'module_remote_support_Title' => 'Pomoc zdalna MikoPBX',
-    'module_remote_support_Description' => 'Utwórz tymczasową bezpieczną sesję dla specjalisty pomocy technicznej.',
     'module_remote_support_ConsentRoot' => 'Specjalista otrzyma tymczasowy dostęp root do tej centrali PBX.',
     'module_remote_support_ConsentEightHours' => 'Dostęp zakończy się automatycznie po ośmiu godzinach.',
     'module_remote_support_ConsentRecording' => 'Działania specjalisty mogą być rejestrowane w celach bezpieczeństwa i audytu.',

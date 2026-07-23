@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Asistență la distanță',
     'SubHeaderModuleRemoteSupport' => 'Creați o sesiune securizată temporară pentru un specialist de asistență tehnică.',
     'module_remote_support_Title' => 'Asistență la distanță MikoPBX',
-    'module_remote_support_Description' => 'Creați o sesiune securizată temporară pentru un specialist de asistență tehnică.',
     'module_remote_support_ConsentRoot' => 'Specialistul va primi acces root temporar la acest PBX.',
     'module_remote_support_ConsentEightHours' => 'Accesul se va încheia automat după opt ore.',
     'module_remote_support_ConsentRecording' => 'Acțiunile specialistului pot fi înregistrate pentru securitate și audit.',

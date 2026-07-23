@@ -5,7 +5,6 @@ declare(strict_types=1);
 $tests = [
     __DIR__ . '/check-module-structure.php',
     __DIR__ . '/check-session-state-contract.php',
-    __DIR__ . '/check-contacts-contract.php',
     __DIR__ . '/check-lobby-protocol-contract.php',
     __DIR__ . '/check-ssh-process-contract.php',
     __DIR__ . '/check-authorized-keys-contract.php',

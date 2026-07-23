@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Modules\ModuleRemoteSupport\Lib\RestAPI\Session\Actions;
 
 use MikoPBX\PBXCoreREST\Lib\PBXApiResult;
-use Modules\ModuleRemoteSupport\Lib\RemoteSupportConfig;
 use Modules\ModuleRemoteSupport\Lib\SessionRepository;
-use Modules\ModuleRemoteSupport\Lib\SupportContact;
-use Modules\ModuleRemoteSupport\Lib\SupportContactsClient;
 use Modules\ModuleRemoteSupport\Models\RemoteSupportSession;
 use Throwable;
 
@@ -20,30 +17,17 @@ final class GetStatusAction
     public static function main(array $data): PBXApiResult
     {
         try {
-            return self::fromSession(
-                (new SessionRepository())->get(),
-                (new SupportContactsClient())->fetch(),
-            );
+            return self::fromSession((new SessionRepository())->get());
         } catch (Throwable) {
             return self::safeError();
         }
     }
 
-    /**
-     * @param list<SupportContact> $contacts
-     */
-    public static function fromSession(
-        RemoteSupportSession $session,
-        array $contacts,
-    ): PBXApiResult {
+    public static function fromSession(RemoteSupportSession $session): PBXApiResult
+    {
         $result = new PBXApiResult();
         $result->success = true;
         $result->data = self::sessionData($session);
-        $result->data['contacts'] = array_map(
-            static fn(SupportContact $contact): array => $contact->toArray(),
-            $contacts,
-        );
-        $result->data['supportSite'] = RemoteSupportConfig::SUPPORT_SITE;
 
         return $result;
     }

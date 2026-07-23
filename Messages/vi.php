@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Hỗ trợ từ xa',
     'SubHeaderModuleRemoteSupport' => 'Tạo một phiên bảo mật tạm thời cho chuyên viên hỗ trợ kỹ thuật.',
     'module_remote_support_Title' => 'Hỗ trợ từ xa MikoPBX',
-    'module_remote_support_Description' => 'Tạo một phiên bảo mật tạm thời cho chuyên viên hỗ trợ kỹ thuật.',
     'module_remote_support_ConsentRoot' => 'Chuyên viên sẽ nhận quyền truy cập root tạm thời vào PBX này.',
     'module_remote_support_ConsentEightHours' => 'Quyền truy cập sẽ tự động kết thúc sau tám giờ.',
     'module_remote_support_ConsentRecording' => 'Thao tác của chuyên viên có thể được ghi lại để bảo mật và kiểm tra.',

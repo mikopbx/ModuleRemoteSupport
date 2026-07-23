@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Remote support',
     'SubHeaderModuleRemoteSupport' => 'Create a temporary secure session for a technical support specialist.',
     'module_remote_support_Title' => 'MikoPBX Remote Support',
-    'module_remote_support_Description' => 'Create a temporary secure session for a technical support specialist.',
     'module_remote_support_ConsentRoot' => 'The specialist will receive temporary root access to this PBX.',
     'module_remote_support_ConsentEightHours' => 'Access will end automatically after eight hours.',
     'module_remote_support_ConsentRecording' => 'The specialist’s actions may be recorded for security and audit purposes.',

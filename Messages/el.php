@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Απομακρυσμένη υποστήριξη',
     'SubHeaderModuleRemoteSupport' => 'Δημιουργήστε μια προσωρινή ασφαλή συνεδρία για έναν ειδικό τεχνικής υποστήριξης.',
     'module_remote_support_Title' => 'Απομακρυσμένη υποστήριξη MikoPBX',
-    'module_remote_support_Description' => 'Δημιουργήστε μια προσωρινή ασφαλή συνεδρία για έναν ειδικό τεχνικής υποστήριξης.',
     'module_remote_support_ConsentRoot' => 'Ο ειδικός θα αποκτήσει προσωρινή πρόσβαση root σε αυτό το PBX.',
     'module_remote_support_ConsentEightHours' => 'Η πρόσβαση θα λήξει αυτόματα μετά από οκτώ ώρες.',
     'module_remote_support_ConsentRecording' => 'Οι ενέργειες του ειδικού ενδέχεται να καταγράφονται για ασφάλεια και έλεγχο.',

@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Etätuki',
     'SubHeaderModuleRemoteSupport' => 'Luo teknisen tuen asiantuntijalle väliaikainen suojattu istunto.',
     'module_remote_support_Title' => 'MikoPBX-etätuki',
-    'module_remote_support_Description' => 'Luo teknisen tuen asiantuntijalle väliaikainen suojattu istunto.',
     'module_remote_support_ConsentRoot' => 'Asiantuntija saa väliaikaisen root-pääsyn tähän PBX-järjestelmään.',
     'module_remote_support_ConsentEightHours' => 'Pääsy päättyy automaattisesti kahdeksan tunnin kuluttua.',
     'module_remote_support_ConsentRecording' => 'Asiantuntijan toimet voidaan tallentaa turvallisuutta ja auditointia varten.',

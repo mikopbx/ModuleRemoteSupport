@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => '远程支持',
     'SubHeaderModuleRemoteSupport' => '为技术支持专家创建临时安全会话。',
     'module_remote_support_Title' => 'MikoPBX 远程支持',
-    'module_remote_support_Description' => '为技术支持专家创建临时安全会话。',
     'module_remote_support_ConsentRoot' => '专家将获得此 PBX 的临时 root 访问权限。',
     'module_remote_support_ConsentEightHours' => '访问权限将在八小时后自动结束。',
     'module_remote_support_ConsentRecording' => '出于安全和审计目的，专家的操作可能会被记录。',

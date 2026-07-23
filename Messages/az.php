@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Uzaqdan dəstək',
     'SubHeaderModuleRemoteSupport' => 'Texniki dəstək mütəxəssisi üçün müvəqqəti təhlükəsiz sessiya yaradın.',
     'module_remote_support_Title' => 'MikoPBX uzaqdan dəstəyi',
-    'module_remote_support_Description' => 'Texniki dəstək mütəxəssisi üçün müvəqqəti təhlükəsiz sessiya yaradın.',
     'module_remote_support_ConsentRoot' => 'Mütəxəssis bu PBX-ə müvəqqəti root girişi əldə edəcək.',
     'module_remote_support_ConsentEightHours' => 'Giriş səkkiz saatdan sonra avtomatik bitəcək.',
     'module_remote_support_ConsentRecording' => 'Mütəxəssisin hərəkətləri təhlükəsizlik və audit üçün qeydə alına bilər.',

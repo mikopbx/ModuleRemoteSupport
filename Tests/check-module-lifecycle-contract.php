@@ -42,6 +42,20 @@ foreach (
     contractAssert(str_contains($confSource, 'function ' . $hook), $hook . ' hook exists');
 }
 
+contractAssert(
+    !str_contains($confSource, 'restartAllWorkers'),
+    'module lifecycle never restarts every PBX worker while the core state lock is held',
+);
+contractAssert(
+    substr_count($confSource, 'Processes::processPHPWorker(') === 2,
+    'module lifecycle manages only its own tunnel worker',
+);
+contractAssert(
+    str_contains($confSource, "action: 'start'")
+        && str_contains($confSource, "action: 'stop'"),
+    'module lifecycle starts and stops its tunnel worker explicitly',
+);
+
 final class LifecycleRuntime implements RemoteSupportRuntimeInterface
 {
     /** @var list<string> */

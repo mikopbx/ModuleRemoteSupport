@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'リモートサポート',
     'SubHeaderModuleRemoteSupport' => '技術サポート担当者用の一時的な安全なセッションを作成します。',
     'module_remote_support_Title' => 'MikoPBX リモートサポート',
-    'module_remote_support_Description' => '技術サポート担当者用の一時的な安全なセッションを作成します。',
     'module_remote_support_ConsentRoot' => '担当者はこのPBXへの一時的なrootアクセスを取得します。',
     'module_remote_support_ConsentEightHours' => 'アクセスは8時間後に自動的に終了します。',
     'module_remote_support_ConsentRecording' => '安全性と監査のため、担当者の操作が記録される場合があります。',

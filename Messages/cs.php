@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Vzdálená podpora',
     'SubHeaderModuleRemoteSupport' => 'Vytvořte dočasnou zabezpečenou relaci pro specialistu technické podpory.',
     'module_remote_support_Title' => 'Vzdálená podpora MikoPBX',
-    'module_remote_support_Description' => 'Vytvořte dočasnou zabezpečenou relaci pro specialistu technické podpory.',
     'module_remote_support_ConsentRoot' => 'Specialista získá dočasný přístup root k této PBX.',
     'module_remote_support_ConsentEightHours' => 'Přístup bude automaticky ukončen po osmi hodinách.',
     'module_remote_support_ConsentRecording' => 'Činnosti specialisty mohou být zaznamenány pro bezpečnost a audit.',

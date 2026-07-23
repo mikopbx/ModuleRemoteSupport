@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'การสนับสนุนระยะไกล',
     'SubHeaderModuleRemoteSupport' => 'สร้างเซสชันที่ปลอดภัยชั่วคราวสำหรับผู้เชี่ยวชาญฝ่ายสนับสนุนด้านเทคนิค',
     'module_remote_support_Title' => 'การสนับสนุนระยะไกล MikoPBX',
-    'module_remote_support_Description' => 'สร้างเซสชันที่ปลอดภัยชั่วคราวสำหรับผู้เชี่ยวชาญฝ่ายสนับสนุนด้านเทคนิค',
     'module_remote_support_ConsentRoot' => 'ผู้เชี่ยวชาญจะได้รับสิทธิ์ root ชั่วคราวใน PBX นี้',
     'module_remote_support_ConsentEightHours' => 'สิทธิ์เข้าถึงจะสิ้นสุดโดยอัตโนมัติหลังจากแปดชั่วโมง',
     'module_remote_support_ConsentRecording' => 'การดำเนินการของผู้เชี่ยวชาญอาจถูกบันทึกเพื่อความปลอดภัยและการตรวจสอบ',

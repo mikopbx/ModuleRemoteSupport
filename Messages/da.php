@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Fjernsupport',
     'SubHeaderModuleRemoteSupport' => 'Opret en midlertidig sikker session til en teknisk supportspecialist.',
     'module_remote_support_Title' => 'MikoPBX-fjernsupport',
-    'module_remote_support_Description' => 'Opret en midlertidig sikker session til en teknisk supportspecialist.',
     'module_remote_support_ConsentRoot' => 'Specialisten får midlertidig root-adgang til denne PBX.',
     'module_remote_support_ConsentEightHours' => 'Adgangen afsluttes automatisk efter otte timer.',
     'module_remote_support_ConsentRecording' => 'Specialistens handlinger kan optages af hensyn til sikkerhed og revision.',

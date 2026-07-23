@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Fernsupport',
     'SubHeaderModuleRemoteSupport' => 'Erstellen Sie eine temporäre sichere Sitzung für den technischen Support.',
     'module_remote_support_Title' => 'MikoPBX-Fernsupport',
-    'module_remote_support_Description' => 'Erstellen Sie eine temporäre sichere Sitzung für den technischen Support.',
     'module_remote_support_ConsentRoot' => 'Der Spezialist erhält vorübergehend Root-Zugriff auf diese PBX.',
     'module_remote_support_ConsentEightHours' => 'Der Zugriff endet nach acht Stunden automatisch.',
     'module_remote_support_ConsentRecording' => 'Die Aktionen des Spezialisten können zu Sicherheits- und Prüfzwecken aufgezeichnet werden.',

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\ModuleRemoteSupport\Lib;
 
-use MikoPBX\Common\Providers\PBXConfModulesProvider;
 use MikoPBX\Core\System\Processes;
 use MikoPBX\Core\System\SystemMessages;
 use MikoPBX\Core\Workers\Cron\WorkerSafeScriptsCore;
@@ -42,7 +41,10 @@ class RemoteSupportConf extends ConfigClass
 
     public function onAfterModuleEnable(): void
     {
-        $this->recreateProvidersAndRestartWorkers();
+        Processes::processPHPWorker(
+            WorkerRemoteSupportTunnel::class,
+            action: 'start',
+        );
     }
 
     public function onBeforeModuleDisable(): bool
@@ -60,7 +62,10 @@ class RemoteSupportConf extends ConfigClass
 
     public function onAfterModuleDisable(): void
     {
-        $this->recreateProvidersAndRestartWorkers();
+        Processes::processPHPWorker(
+            WorkerRemoteSupportTunnel::class,
+            action: 'stop',
+        );
     }
 
     public function onAfterPbxStarted(): void
@@ -79,11 +84,5 @@ class RemoteSupportConf extends ConfigClass
     protected function lifecycleManager(): ModuleLifecycleManager
     {
         return new ModuleLifecycleManager();
-    }
-
-    private function recreateProvidersAndRestartWorkers(): void
-    {
-        PBXConfModulesProvider::recreateModulesProvider();
-        Processes::restartAllWorkers(true);
     }
 }

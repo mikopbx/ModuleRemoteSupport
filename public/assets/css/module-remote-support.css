@@ -1,19 +1,82 @@
-.module-remote-support {
-    margin: 0 auto;
-    max-width: 58rem;
+.module-remote-support .remote-support-summary {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    display: flex;
+    font-weight: 600;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
 }
 
-.module-remote-support .remote-support-header {
-    min-height: 7rem;
+.module-remote-support .remote-support-summary-led {
+    background-color: #aaa;
+    border-radius: 50%;
+    display: inline-block;
+    flex: 0 0 auto;
+    height: 10px;
+    width: 10px;
 }
 
-.module-remote-support .remote-support-live:empty {
-    display: none;
+.module-remote-support .remote-support-summary-grey {
+    background: #f3f4f5;
+    border-color: #e0e1e2;
+    color: #767676;
+}
+
+.module-remote-support .remote-support-summary-green {
+    background: #e6f7ec;
+    border-color: #b7e1c3;
+    color: #1a7e3a;
+}
+
+.module-remote-support .remote-support-summary-green .remote-support-summary-led {
+    background: #21ba45;
+    box-shadow: 0 0 6px rgba(33, 186, 69, 0.55);
+}
+
+.module-remote-support .remote-support-summary-yellow {
+    background: #fff8e1;
+    border-color: #f3e2b3;
+    color: #8d6f12;
+}
+
+.module-remote-support .remote-support-summary-yellow .remote-support-summary-led {
+    background: #fbbd08;
+    box-shadow: 0 0 6px rgba(251, 189, 8, 0.55);
+}
+
+.module-remote-support .remote-support-summary-red {
+    background: #fdeaea;
+    border-color: #f0c0bd;
+    color: #c0392b;
+}
+
+.module-remote-support .remote-support-summary-red .remote-support-summary-led {
+    background: #db2828;
+    box-shadow: 0 0 6px rgba(219, 40, 40, 0.55);
 }
 
 .module-remote-support .remote-support-state {
-    min-height: 13rem;
-    padding: 2rem;
+    min-height: 11rem;
+    padding: 1rem 0;
+}
+
+.module-remote-support .remote-support-progress {
+    padding-top: 3rem;
+    text-align: center;
+}
+
+.module-remote-support .remote-support-progress p {
+    margin-top: 1.5rem;
+}
+
+.module-remote-support .remote-support-session {
+    margin-bottom: 1rem;
+}
+
+.module-remote-support .remote-support-code-label {
+    font-weight: 600;
 }
 
 .module-remote-support .remote-support-code {
@@ -35,17 +98,24 @@
     margin-bottom: 0;
 }
 
+.module-remote-support .remote-support-error {
+    color: #c0392b;
+    font-weight: 600;
+}
+
+.module-remote-support .remote-support-contacts {
+    border-top: 1px solid #e0e1e2;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+}
+
 .module-remote-support .remote-support-contacts .button {
     margin-bottom: 0.5rem;
 }
 
-.module-remote-support .remote-support-contact-fallback {
-    margin-top: 0.75rem;
-}
-
 @media (max-width: 600px) {
     .module-remote-support .remote-support-state {
-        padding: 1.25rem;
+        min-height: 0;
     }
 
     .module-remote-support .remote-support-contacts .button {

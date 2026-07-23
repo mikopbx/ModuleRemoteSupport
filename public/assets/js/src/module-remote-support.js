@@ -8,16 +8,27 @@ const moduleRemoteSupport = {
     API_URL: '/pbxcore/api/v3/module-remote-support/session',
     POLL_INTERVAL_MS: 1000,
     KNOWN_STATES: ['off', 'starting', 'active', 'stopping', 'error'],
+    SUMMARY_CLASSES: [
+        'remote-support-summary-grey',
+        'remote-support-summary-green',
+        'remote-support-summary-yellow',
+        'remote-support-summary-red',
+    ],
+    SUMMARY_CLASS_BY_STATE: {
+        off: 'remote-support-summary-grey',
+        starting: 'remote-support-summary-yellow',
+        active: 'remote-support-summary-green',
+        stopping: 'remote-support-summary-yellow',
+        error: 'remote-support-summary-red',
+    },
     pollTimer: null,
     current: null,
     $views: null,
+    $summary: null,
     $live: null,
     $code: null,
     $countdown: null,
     $error: null,
-    $phone: null,
-    $telegram: null,
-    $contactFallback: null,
 
     /**
      * Initialize cached elements, handlers, and initial state loading.
@@ -25,13 +36,11 @@ const moduleRemoteSupport = {
      */
     initialize() {
         moduleRemoteSupport.$views = $('[data-state-view]');
+        moduleRemoteSupport.$summary = $('#remote-support-summary');
         moduleRemoteSupport.$live = $('#remote-support-live');
         moduleRemoteSupport.$code = $('#remote-support-code');
         moduleRemoteSupport.$countdown = $('#remote-support-countdown');
         moduleRemoteSupport.$error = $('#remote-support-error');
-        moduleRemoteSupport.$phone = $('#remote-support-phone');
-        moduleRemoteSupport.$telegram = $('#remote-support-telegram');
-        moduleRemoteSupport.$contactFallback = $('#remote-support-contact-fallback');
 
         $('#remote-support-start, #remote-support-retry').on('click', () => {
             moduleRemoteSupport.mutate('start');
@@ -111,53 +120,25 @@ const moduleRemoteSupport = {
 
         moduleRemoteSupport.$views.prop('hidden', true);
         $(`[data-state-view="${state}"]`).prop('hidden', false);
-        moduleRemoteSupport.$live.text(moduleRemoteSupport.stateLabel(state));
+        moduleRemoteSupport.renderSummary(state);
         moduleRemoteSupport.$code.text(moduleRemoteSupport.current.code);
         moduleRemoteSupport.$error.text(
             moduleRemoteSupport.errorLabel(moduleRemoteSupport.current.errorCode)
         );
-        moduleRemoteSupport.renderContacts(Array.isArray(data.contacts) ? data.contacts : []);
         moduleRemoteSupport.updateCountdown();
         moduleRemoteSupport.schedulePolling(state);
     },
 
     /**
-     * Render only validated contact types and schemes.
-     * @param {Array<Object>} contacts - Validated server contacts.
+     * Render the localized status and its calm color indicator.
+     * @param {string} state - Current allowlisted state.
      * @returns {void}
      */
-    renderContacts(contacts) {
-        moduleRemoteSupport.$phone.prop('hidden', true);
-        moduleRemoteSupport.$telegram.prop('hidden', true);
-        let visible = false;
-
-        contacts.forEach((contact) => {
-            if (
-                contact.type === 'phone'
-                && typeof contact.uri === 'string'
-                && contact.uri.startsWith('tel:')
-            ) {
-                moduleRemoteSupport.$phone
-                    .attr('href', contact.uri)
-                    .find('span')
-                    .text(typeof contact.label === 'string' ? contact.label : '');
-                moduleRemoteSupport.$phone.prop('hidden', false);
-                visible = true;
-            } else if (
-                contact.type === 'telegram'
-                && typeof contact.uri === 'string'
-                && contact.uri.startsWith('https://')
-            ) {
-                moduleRemoteSupport.$telegram
-                    .attr('href', contact.uri)
-                    .find('span')
-                    .text(typeof contact.label === 'string' ? contact.label : '');
-                moduleRemoteSupport.$telegram.prop('hidden', false);
-                visible = true;
-            }
-        });
-
-        moduleRemoteSupport.$contactFallback.prop('hidden', visible);
+    renderSummary(state) {
+        moduleRemoteSupport.$summary
+            .removeClass(moduleRemoteSupport.SUMMARY_CLASSES.join(' '))
+            .addClass(moduleRemoteSupport.SUMMARY_CLASS_BY_STATE[state]);
+        moduleRemoteSupport.$live.text(moduleRemoteSupport.stateLabel(state));
     },
 
     /**
@@ -250,7 +231,6 @@ const moduleRemoteSupport = {
         moduleRemoteSupport.render({
             state: 'error',
             errorCode: safeCode,
-            contacts: [],
         });
     },
 

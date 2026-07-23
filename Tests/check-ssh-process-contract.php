@@ -83,8 +83,8 @@ contractAssert(
     'reverse bind failure is fatal',
 );
 contractAssert(
-    in_array('22042:127.0.0.1:22', $tunnelArguments, true),
-    'reverse forwarding uses validated allocation values',
+    in_array('127.0.0.1:22042:127.0.0.1:22', $tunnelArguments, true),
+    'reverse forwarding uses the exact permitted loopback listener',
 );
 contractAssert(
     in_array('lobbytun@' . RemoteSupportConfig::SUPPORT_HOST, $tunnelArguments, true),

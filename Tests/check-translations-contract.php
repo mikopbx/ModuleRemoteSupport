@@ -146,6 +146,10 @@ foreach ($expectedLocales as $locale) {
     $keys = array_keys($catalog);
     sort($keys);
     contractAssertSame($russianKeys, $keys, $locale . ' has the exact Russian key set');
+    contractAssert(
+        !array_key_exists('module_remote_support_Description', $catalog),
+        $locale . ' removes the obsolete introductory description',
+    );
 
     foreach ($russian as $key => $russianValue) {
         $value = trim($catalog[$key]);

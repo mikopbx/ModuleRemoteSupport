@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'დისტანციური მხარდაჭერა',
     'SubHeaderModuleRemoteSupport' => 'შექმენით დროებითი დაცული სესია ტექნიკური მხარდაჭერის სპეციალისტისთვის.',
     'module_remote_support_Title' => 'MikoPBX დისტანციური მხარდაჭერა',
-    'module_remote_support_Description' => 'შექმენით დროებითი დაცული სესია ტექნიკური მხარდაჭერის სპეციალისტისთვის.',
     'module_remote_support_ConsentRoot' => 'სპეციალისტი მიიღებს დროებით root წვდომას ამ PBX-ზე.',
     'module_remote_support_ConsentEightHours' => 'წვდომა ავტომატურად დასრულდება რვა საათის შემდეგ.',
     'module_remote_support_ConsentRecording' => 'უსაფრთხოებისა და აუდიტისთვის სპეციალისტის მოქმედებები შეიძლება ჩაიწეროს.',

@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Удалённая поддержка',
     'SubHeaderModuleRemoteSupport' => 'Создайте временный защищённый сеанс для специалиста технической поддержки.',
     'module_remote_support_Title' => 'Удалённая поддержка MikoPBX',
-    'module_remote_support_Description' => 'Создайте временный защищённый сеанс для специалиста технической поддержки.',
     'module_remote_support_ConsentRoot' => 'Специалист получит временный доступ root к этой АТС.',
     'module_remote_support_ConsentEightHours' => 'Доступ автоматически завершится через восемь часов.',
     'module_remote_support_ConsentRecording' => 'Действия специалиста могут записываться для безопасности и аудита.',

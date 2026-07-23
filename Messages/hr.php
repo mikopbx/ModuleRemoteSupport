@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Udaljena podrška',
     'SubHeaderModuleRemoteSupport' => 'Stvorite privremenu sigurnu sesiju za stručnjaka tehničke podrške.',
     'module_remote_support_Title' => 'MikoPBX udaljena podrška',
-    'module_remote_support_Description' => 'Stvorite privremenu sigurnu sesiju za stručnjaka tehničke podrške.',
     'module_remote_support_ConsentRoot' => 'Stručnjak će dobiti privremeni root pristup ovoj PBX centrali.',
     'module_remote_support_ConsentEightHours' => 'Pristup će se automatski završiti nakon osam sati.',
     'module_remote_support_ConsentRecording' => 'Radnje stručnjaka mogu se snimati radi sigurnosti i revizije.',

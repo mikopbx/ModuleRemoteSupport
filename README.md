@@ -67,34 +67,33 @@ module disable, module uninstall, or the fixed eight-hour expiry.
 - The support code, private key, raw SSH output, PBX inventory, call data, and
   configuration are not sent to contact or analytics services.
 - The tunnel service can see the public source IP of the outbound connection.
-- Support contacts are downloaded over HTTPS and treated as untrusted data.
+- Support contact links never include the temporary session code.
 
 ## Network requirements
 
 The PBX needs DNS resolution and outbound TCP access to:
 
-- `support-tunnel.miko.ru:34022` for session allocation and the secure tunnel;
-- `www.mikopbx.com:443` for optional support contact details.
+- `support-tunnel.miko.ru:34022` for session allocation and the secure tunnel.
 
 MikoPBX 2025.1.1 or newer, OpenSSH `ssh`, `ssh-keygen`, Ed25519 support, and
 writable private runtime storage are required.
 
 ## Troubleshooting
 
-- **The session does not start:** verify DNS and both outbound destinations.
+- **The session does not start:** verify DNS and outbound access to
+  `support-tunnel.miko.ru:34022`.
 - **The page reports that the system is not ready:** confirm that `ssh` and
   `ssh-keygen` are installed and private runtime storage is writable.
 - **The tunnel disconnects:** end the failed session, check network stability,
   and try again.
 - **Access does not return to off:** do not disable or uninstall repeatedly.
   Contact support so temporary access can be verified and revoked safely.
-- **Support contacts are missing:** use the support website link shown on the
-  page; the tunnel can still be controlled independently.
-
 ## Contact support
 
-Use the [MikoPBX support website](https://www.mikopbx.com/support/) or email
-`help@miko.ru`. Never place the support code in a URL.
+Call `+7 495 229-30-42` or open
+[Telegram](https://t.me/Telefon1CBot?start=[mkpbx]). The module never appends
+the temporary support code to either contact link. Never place the support code
+in a URL.
 
 ## For contributors
 

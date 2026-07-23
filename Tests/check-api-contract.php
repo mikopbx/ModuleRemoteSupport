@@ -6,7 +6,6 @@ use Modules\ModuleRemoteSupport\Lib\RestAPI\Session\Actions\GetStatusAction;
 use Modules\ModuleRemoteSupport\Lib\RestAPI\Session\Actions\StartAction;
 use Modules\ModuleRemoteSupport\Lib\RestAPI\Session\Actions\StopAction;
 use Modules\ModuleRemoteSupport\Lib\SessionStatus;
-use Modules\ModuleRemoteSupport\Lib\SupportContact;
 use Modules\ModuleRemoteSupport\Models\RemoteSupportSession;
 
 require_once __DIR__ . '/bootstrap.php';
@@ -52,15 +51,31 @@ $session->started_at = '1721721600';
 $session->expires_at = '1721750400';
 $session->error_code = '';
 
-$contacts = [
-    new SupportContact('phone', 'Phone', 'tel:+10000000000'),
-    new SupportContact('telegram', 'Telegram', 'https://t.me/miko_support'),
-];
-$statusResult = GetStatusAction::fromSession($session, $contacts);
+$statusResult = GetStatusAction::fromSession($session);
 contractAssertSame(true, $statusResult->success, 'GET status uses successful MikoPBX envelope');
 contractAssertSame('active', $statusResult->data['state'] ?? null, 'GET normalizes state');
 contractAssertSame('ABC-123', $statusResult->data['code'] ?? null, 'GET returns active code');
-contractAssertSame(2, count($statusResult->data['contacts'] ?? []), 'GET returns validated contacts');
+contractAssert(
+    !array_key_exists('contacts', $statusResult->data),
+    'GET does not expose dynamic contacts',
+);
+contractAssert(
+    !array_key_exists('supportSite', $statusResult->data),
+    'GET does not expose a website fallback',
+);
+
+$dataStructure = file_get_contents(
+    $root . '/Lib/RestAPI/Session/DataStructure.php',
+);
+contractAssert(is_string($dataStructure), 'REST data structure must be readable');
+contractAssert(
+    !str_contains($dataStructure, "'contacts' =>"),
+    'REST schema has no contacts field',
+);
+contractAssert(
+    !str_contains($dataStructure, "'supportSite' =>"),
+    'REST schema has no supportSite field',
+);
 
 $serialized = json_encode($statusResult->data, JSON_THROW_ON_ERROR);
 foreach (['private_key', 'privateKey', 'raw_ssh', 'process_id', 'pid', 'tunnel_port', 'slot'] as $forbidden) {

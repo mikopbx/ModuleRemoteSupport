@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Suporte remoto',
     'SubHeaderModuleRemoteSupport' => 'Crie uma sessão segura temporária para um especialista de suporte técnico.',
     'module_remote_support_Title' => 'Suporte remoto do MikoPBX',
-    'module_remote_support_Description' => 'Crie uma sessão segura temporária para um especialista de suporte técnico.',
     'module_remote_support_ConsentRoot' => 'O especialista receberá acesso root temporário a este PBX.',
     'module_remote_support_ConsentEightHours' => 'O acesso será encerrado automaticamente após oito horas.',
     'module_remote_support_ConsentRecording' => 'As ações do especialista podem ser gravadas para segurança e auditoria.',

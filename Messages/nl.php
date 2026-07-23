@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Ondersteuning op afstand',
     'SubHeaderModuleRemoteSupport' => 'Maak een tijdelijke beveiligde sessie voor een technische supportspecialist.',
     'module_remote_support_Title' => 'MikoPBX-ondersteuning op afstand',
-    'module_remote_support_Description' => 'Maak een tijdelijke beveiligde sessie voor een technische supportspecialist.',
     'module_remote_support_ConsentRoot' => 'De specialist krijgt tijdelijk root-toegang tot deze PBX.',
     'module_remote_support_ConsentEightHours' => 'De toegang eindigt automatisch na acht uur.',
     'module_remote_support_ConsentRecording' => 'De handelingen van de specialist kunnen worden opgenomen voor beveiliging en controle.',

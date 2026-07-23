@@ -8,12 +8,7 @@ final class RemoteSupportConfig
 {
     public const string SUPPORT_HOST = 'support-tunnel.miko.ru';
     public const int SUPPORT_PORT = 34022;
-    public const string CONTACTS_URL = 'https://www.mikopbx.com/support/contacts.json';
-    public const string SUPPORT_SITE = 'https://www.mikopbx.com/support/';
     public const int SESSION_TTL_SECONDS = 28_800;
-    public const float CONTACT_CONNECT_TIMEOUT = 2.0;
-    public const float CONTACT_TIMEOUT = 3.0;
-    public const int CONTACT_MAX_BYTES = 65_536;
     public const int LOBBY_MAX_BYTES = 8_192;
     public const int SSH_CONNECT_TIMEOUT = 10;
     public const int SSH_KEEPALIVE_INTERVAL = 15;

@@ -7,7 +7,6 @@ return [
     'BreadcrumbModuleRemoteSupport' => 'Távoli támogatás',
     'SubHeaderModuleRemoteSupport' => 'Hozzon létre ideiglenes biztonságos munkamenetet a műszaki támogatás szakértőjének.',
     'module_remote_support_Title' => 'MikoPBX távoli támogatás',
-    'module_remote_support_Description' => 'Hozzon létre ideiglenes biztonságos munkamenetet a műszaki támogatás szakértőjének.',
     'module_remote_support_ConsentRoot' => 'A szakértő ideiglenes root hozzáférést kap ehhez a PBX-hez.',
     'module_remote_support_ConsentEightHours' => 'A hozzáférés nyolc óra után automatikusan megszűnik.',
     'module_remote_support_ConsentRecording' => 'A szakértő műveletei biztonsági és ellenőrzési célból rögzíthetők.',

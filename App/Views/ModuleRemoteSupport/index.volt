@@ -1,20 +1,16 @@
-<div id="remote-support-page" class="module-remote-support">
-    <div class="ui clearing segment remote-support-header">
-        <img class="ui tiny left floated image"
-             src="{{ logoImagePath }}"
-             alt="{{ t._('module_remote_support_Title') }}">
-        <h2 class="ui header">{{ t._('module_remote_support_Title') }}</h2>
-        <p>{{ t._('module_remote_support_Description') }}</p>
-    </div>
-
-    <div id="remote-support-live"
-         class="ui message remote-support-live"
+<div id="remote-support-page" class="ui large grey segment module-remote-support">
+    <div id="remote-support-summary"
+         class="remote-support-summary remote-support-summary-grey"
          role="status"
          aria-live="polite"
-         aria-atomic="true"></div>
+         aria-atomic="true">
+        <span class="remote-support-summary-led" aria-hidden="true"></span>
+        <span id="remote-support-live" class="remote-support-summary-text">
+            {{ t._('module_remote_support_StateOff') }}
+        </span>
+    </div>
 
-    <section class="ui segment remote-support-state" data-state-view="off" hidden>
-        <h3 class="ui header">{{ t._('module_remote_support_StateOff') }}</h3>
+    <section class="remote-support-state" data-state-view="off" hidden>
         <div class="ui warning message remote-support-consent">
             <p>{{ t._('module_remote_support_ConsentRoot') }}</p>
             <p>{{ t._('module_remote_support_ConsentEightHours') }}</p>
@@ -26,18 +22,16 @@
         </button>
     </section>
 
-    <section class="ui segment remote-support-state" data-state-view="starting" hidden>
+    <section class="remote-support-state remote-support-progress" data-state-view="starting" hidden>
         <div class="ui active centered inline loader"></div>
-        <h3 class="ui center aligned header">
-            {{ t._('module_remote_support_StateStarting') }}
-        </h3>
         <p class="center aligned">{{ t._('module_remote_support_StartingHint') }}</p>
     </section>
 
-    <section class="ui segment remote-support-state" data-state-view="active" hidden>
-        <h3 class="ui header">{{ t._('module_remote_support_StateActive') }}</h3>
-        <div class="ui positive message">
-            <div class="header">{{ t._('module_remote_support_CodeLabel') }}</div>
+    <section class="remote-support-state" data-state-view="active" hidden>
+        <div class="remote-support-session">
+            <div class="remote-support-code-label">
+                {{ t._('module_remote_support_CodeLabel') }}
+            </div>
             <div id="remote-support-code"
                  class="remote-support-code"
                  aria-label="{{ t._('module_remote_support_CodeLabel') }}"></div>
@@ -57,53 +51,34 @@
         </button>
     </section>
 
-    <section class="ui segment remote-support-state" data-state-view="stopping" hidden>
+    <section class="remote-support-state remote-support-progress" data-state-view="stopping" hidden>
         <div class="ui active centered inline loader"></div>
-        <h3 class="ui center aligned header">
-            {{ t._('module_remote_support_StateStopping') }}
-        </h3>
         <p class="center aligned">{{ t._('module_remote_support_StoppingHint') }}</p>
     </section>
 
-    <section class="ui segment remote-support-state" data-state-view="error" hidden>
-        <div class="ui negative message">
-            <div class="header">{{ t._('module_remote_support_StateError') }}</div>
-            <p id="remote-support-error"></p>
-        </div>
+    <section class="remote-support-state" data-state-view="error" hidden>
+        <p id="remote-support-error" class="remote-support-error"></p>
         <button id="remote-support-retry" class="ui primary button" type="button">
             <i class="redo icon"></i>
             {{ t._('module_remote_support_Retry') }}
         </button>
     </section>
 
-    <aside class="ui secondary segment remote-support-contacts">
+    <aside class="remote-support-contacts">
         <h4 class="ui header">{{ t._('module_remote_support_Contacts') }}</h4>
         <a id="remote-support-phone"
            class="ui basic button"
-           href="tel:"
-           hidden>
+           href="tel:+74952293042">
             <i class="phone icon"></i>
-            <span></span>
+            +7 495 229-30-42
         </a>
         <a id="remote-support-telegram"
            class="ui basic button"
-           href="https://t.me/"
-           target="_blank"
-           rel="noopener noreferrer"
-           hidden>
-            <i class="telegram plane icon"></i>
-            <span></span>
-        </a>
-        <a id="remote-support-website"
-           class="ui basic button"
-           href="https://www.mikopbx.com/support/"
+           href="https://t.me/Telefon1CBot?start=[mkpbx]"
            target="_blank"
            rel="noopener noreferrer">
-            <i class="external alternate icon"></i>
-            {{ t._('module_remote_support_Website') }}
+            <i class="telegram plane icon"></i>
+            Telegram
         </a>
-        <p id="remote-support-contact-fallback" class="remote-support-contact-fallback">
-            {{ t._('module_remote_support_ContactFallback') }}
-        </p>
     </aside>
 </div>

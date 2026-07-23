@@ -30,7 +30,8 @@ foreach (
         'root',
         'recorded',
         'support-tunnel.miko.ru:34022',
-        'www.mikopbx.com:443',
+        '+7 495 229-30-42',
+        'https://t.me/Telefon1CBot?start=[mkpbx]',
         'README.ru.md',
     ] as $fragment
 ) {
@@ -53,7 +54,8 @@ foreach (
         'root',
         'записываться',
         'support-tunnel.miko.ru:34022',
-        'www.mikopbx.com:443',
+        '+7 495 229-30-42',
+        'https://t.me/Telefon1CBot?start=[mkpbx]',
         'README.md',
     ] as $fragment
 ) {
@@ -62,8 +64,12 @@ foreach (
 
 foreach ([$english, $russian] as $readme) {
     contractAssert(
-        str_contains($readme, 'https://www.mikopbx.com/support/'),
-        'README contains the support website',
+        !str_contains($readme, 'www.mikopbx.com:443'),
+        'README has no contact website network dependency',
+    );
+    contractAssert(
+        !str_contains($readme, 'https://www.mikopbx.com/support/'),
+        'README has no support website fallback',
     );
     contractAssert(
         !str_contains($readme, '?code='),
