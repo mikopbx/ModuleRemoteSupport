@@ -45,12 +45,13 @@ contractAssertSame($sessionId, $sameStarting->session_id, 'starting + start is i
 
 $active = $repository->markActive(
     code: 'ABC-123',
-    slot: 42,
-    tunnelPort: 22_042,
+    slot: 0,
+    tunnelPort: 22_000,
     startedAt: 1_721_721_600,
     expiresAt: 1_721_750_400,
 );
 contractAssertSame(SessionStatus::ACTIVE->value, $active->status, 'starting + active');
+contractAssertSame('0', $active->slot, 'server slot zero is persisted');
 
 $sameActive = $repository->beginStart('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
 contractAssertSame($sessionId, $sameActive->session_id, 'active + start is idempotent');

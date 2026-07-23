@@ -45,7 +45,7 @@ final class LobbyProtocol
 
         $slot = (int)$matches[2];
         $tunnelPort = (int)$matches[3];
-        if ($slot < 1 || $slot > 999 || $tunnelPort < 22_000 || $tunnelPort > 22_999) {
+        if ($slot < 0 || $slot > 999 || $tunnelPort < 22_000 || $tunnelPort > 22_999) {
             throw new LobbyProtocolException('Lobby allocation is outside allowed ranges');
         }
 

@@ -118,7 +118,7 @@ final class SessionRepository
     ): RemoteSupportSession {
         if (
             preg_match('/\A[A-Z0-9]{3}-[A-Z0-9]{3}\z/D', $code) !== 1
-            || $slot < 1
+            || $slot < 0
             || $slot > 999
             || $tunnelPort < 1
             || $tunnelPort > 65_535

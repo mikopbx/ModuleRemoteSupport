@@ -30,6 +30,16 @@ contractAssert(
     'allocation must expire in the future',
 );
 
+$zeroSlotAllocation = $protocol->parse(
+    str_replace(
+        ['SLOT: 42', 'TUNNEL_PORT: 22042'],
+        ['SLOT: 0', 'TUNNEL_PORT: 22000'],
+        $valid,
+    ),
+);
+contractAssertSame(0, $zeroSlotAllocation->slot, 'server slot zero is valid');
+contractAssertSame(22_000, $zeroSlotAllocation->tunnelPort, 'slot zero port is valid');
+
 $invalidResponses = [
     'missing field' => str_replace("SLOT: 42\n", '', $valid),
     'duplicate field' => str_replace("SLOT: 42\n", "SLOT: 42\nSLOT: 42\n", $valid),
@@ -39,7 +49,6 @@ $invalidResponses = [
     'lowercase code' => str_replace('ABC-123', 'abc-123', $valid),
     'malformed code' => str_replace('ABC-123', 'ABCD-123', $valid),
     'non-numeric slot' => str_replace('SLOT: 42', 'SLOT: XX', $valid),
-    'zero slot' => str_replace('SLOT: 42', 'SLOT: 0', $valid),
     'slot out of range' => str_replace('SLOT: 42', 'SLOT: 1000', $valid),
     'non-numeric port' => str_replace('TUNNEL_PORT: 22042', 'TUNNEL_PORT: abc', $valid),
     'port outside lobby range' => str_replace('TUNNEL_PORT: 22042', 'TUNNEL_PORT: 65535', $valid),
