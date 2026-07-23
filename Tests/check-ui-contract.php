@@ -6,14 +6,24 @@ require_once __DIR__ . '/bootstrap.php';
 
 $root = dirname(__DIR__);
 $viewPath = $root . '/App/Views/ModuleRemoteSupport/index.volt';
+$controllerPath = $root . '/App/Controllers/ModuleRemoteSupportController.php';
 $jsPath = $root . '/public/assets/js/src/module-remote-support.js';
 
 contractAssert(is_file($viewPath), 'native Volt page must exist');
+contractAssert(is_file($controllerPath), 'UI controller must exist');
 contractAssert(is_file($jsPath), 'source JavaScript must exist');
 
 $view = file_get_contents($viewPath);
+$controller = file_get_contents($controllerPath);
 $js = file_get_contents($jsPath);
-contractAssert(is_string($view) && is_string($js), 'UI sources must be readable');
+contractAssert(
+    is_string($view) && is_string($controller) && is_string($js),
+    'UI sources must be readable',
+);
+contractAssert(
+    !preg_match('/\$this->view->pick\s*\(/', $controller),
+    'controller relies on BaseController module view resolution',
+);
 
 foreach (['off', 'starting', 'active', 'stopping', 'error'] as $state) {
     contractAssertSame(

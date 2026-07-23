@@ -9,6 +9,5 @@ class ModuleRemoteSupportController extends RemoteSupportBaseController
     public function indexAction(): void
     {
         $this->addModuleAssets();
-        $this->view->pick('ModuleRemoteSupport/index');
     }
 }
