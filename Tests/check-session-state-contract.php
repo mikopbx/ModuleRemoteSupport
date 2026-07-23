@@ -8,6 +8,16 @@ use Modules\ModuleRemoteSupport\Models\RemoteSupportSession;
 
 require_once __DIR__ . '/bootstrap.php';
 
+$idProperty = new ReflectionProperty(RemoteSupportSession::class, 'id');
+$idDocComment = $idProperty->getDocComment();
+contractAssert(is_string($idDocComment), 'session ID metadata is readable');
+contractAssert(
+    str_contains($idDocComment, '@Primary')
+    && str_contains($idDocComment, '@Identity')
+    && str_contains($idDocComment, '@Column(type="integer", nullable=false)'),
+    'session ID exposes identity primary integer column metadata to Phalcon',
+);
+
 $stored = new RemoteSupportSession();
 $stored->id = 1;
 $stored->status = SessionStatus::OFF->value;

@@ -9,10 +9,11 @@ use MikoPBX\Modules\Models\ModulesModelsBase;
 final class RemoteSupportSession extends ModulesModelsBase
 {
     /**
+     * @var int
      * @Primary
+     * @Identity
      * @Column(type="integer", nullable=false)
      */
-    /** @var int */
     public $id = 1;
 
     /**
