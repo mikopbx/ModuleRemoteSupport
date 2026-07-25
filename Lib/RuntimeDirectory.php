@@ -12,6 +12,15 @@ final class RuntimeDirectory implements RemoteSupportRuntimeInterface
 {
     private const string DIRECTORY_NAME = 'module-remote-support';
     private const string SESSION_DIRECTORY_PATTERN = '/\A[a-f0-9]{32}\z/D';
+    private const string WEB_CREDENTIAL_FILE = 'web-credential.json';
+
+    /**
+     * The tunnel worker runs as root; the admin web interface (php-fpm) runs as
+     * the 'www' user. The ephemeral web password must be readable by that web
+     * user so the module page can show it, while the SSH private keys in the
+     * session subdirectories stay root-only.
+     */
+    private const string WEB_GROUP = 'www';
 
     private ?string $sessionDirectory = null;
     private ?string $sshKeygenBinary = null;
@@ -98,8 +107,60 @@ final class RuntimeDirectory implements RemoteSupportRuntimeInterface
         return $this->requireSessionDirectory() . '/known_hosts';
     }
 
+    public function writeWebCredential(string $login, string $password): void
+    {
+        $baseDirectory = $this->baseDirectory();
+        $this->ensureDirectory($baseDirectory);
+
+        $credentialPath = $this->webCredentialPath();
+        $payload = json_encode(
+            ['login' => $login, 'password' => $password],
+            JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES,
+        );
+        $bytes = file_put_contents($credentialPath, $payload, LOCK_EX);
+        if ($bytes === false || !chmod($credentialPath, 0640)) {
+            $this->removeFile($credentialPath);
+            throw new RuntimeException('Unable to store the ephemeral web credential');
+        }
+
+        // Best-effort: let the web user read the credential and traverse the
+        // base directory. On MikoPBX the root worker owns these files and the
+        // 'www' group always exists; in unit tests these calls are no-ops.
+        @chgrp($credentialPath, self::WEB_GROUP);
+        @chgrp($baseDirectory, self::WEB_GROUP);
+        @chmod($baseDirectory, 0710);
+    }
+
+    public function readWebCredential(): ?array
+    {
+        $credentialPath = $this->webCredentialPath();
+        if (!is_file($credentialPath)) {
+            return null;
+        }
+
+        $payload = file_get_contents($credentialPath);
+        if ($payload === false) {
+            return null;
+        }
+
+        $credential = json_decode($payload, true, 4);
+        if (
+            !is_array($credential)
+            || !is_string($credential['login'] ?? null)
+            || !is_string($credential['password'] ?? null)
+        ) {
+            return null;
+        }
+
+        return [
+            'login' => $credential['login'],
+            'password' => $credential['password'],
+        ];
+    }
+
     public function cleanup(): void
     {
+        $this->removeFile($this->webCredentialPath());
         if ($this->sessionDirectory === null) {
             return;
         }
@@ -114,6 +175,8 @@ final class RuntimeDirectory implements RemoteSupportRuntimeInterface
         if (!is_dir($baseDirectory)) {
             return;
         }
+
+        $this->removeFile($this->webCredentialPath());
 
         $entries = scandir($baseDirectory);
         if (!is_array($entries)) {
@@ -133,6 +196,11 @@ final class RuntimeDirectory implements RemoteSupportRuntimeInterface
         return rtrim(Directories::getDir(Directories::CORE_TEMP_DIR), '/')
             . '/'
             . self::DIRECTORY_NAME;
+    }
+
+    private function webCredentialPath(): string
+    {
+        return $this->baseDirectory() . '/' . self::WEB_CREDENTIAL_FILE;
     }
 
     private function ensureDirectory(string $path): void

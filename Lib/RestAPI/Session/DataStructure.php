@@ -70,6 +70,16 @@ class DataStructure extends AbstractDataStructure implements OpenApiSchemaProvid
                     'description' => 'rest_schema_session_errorCode',
                     'readOnly' => true,
                 ],
+                'webLogin' => [
+                    'type' => 'string',
+                    'description' => 'rest_schema_session_webLogin',
+                    'readOnly' => true,
+                ],
+                'webPassword' => [
+                    'type' => 'string',
+                    'description' => 'rest_schema_session_webPassword',
+                    'readOnly' => true,
+                ],
             ],
             'related' => [],
         ];

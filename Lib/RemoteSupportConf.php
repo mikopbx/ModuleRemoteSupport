@@ -68,6 +68,24 @@ class RemoteSupportConf extends ConfigClass
         );
     }
 
+    /**
+     * Authenticates the support engineer with the ephemeral web credential of
+     * the active session.
+     *
+     * @param string $login The user login entered on the login page.
+     * @param string $password The user password entered on the login page.
+     *
+     * @return array<string, string> The session data, empty when not ours.
+     */
+    public function authenticateUser(string $login, string $password): array
+    {
+        try {
+            return (new WebAccessAuthenticator())->authenticate($login, $password);
+        } catch (Throwable) {
+            return [];
+        }
+    }
+
     public function onAfterPbxStarted(): void
     {
         try {

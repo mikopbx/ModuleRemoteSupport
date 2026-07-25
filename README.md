@@ -10,9 +10,12 @@ and lets you end access at any time.
 ## What it does
 
 - creates an outbound encrypted support tunnel;
-- grants the support engineer temporary `root` access to this PBX;
+- grants the support engineer temporary `root` access to this PBX over SSH;
+- grants the support engineer temporary full administrator access to the web
+  interface with a one-time login and password shown on the page;
 - shows a one-time support code;
-- removes the temporary key and private runtime files when access ends;
+- removes the temporary key, web credential, and private runtime files when
+  access ends;
 - disconnects automatically after exactly eight hours.
 
 The module does not create an inbound firewall rule and does not require a
@@ -22,8 +25,11 @@ public IP address.
 
 Starting a session means that:
 
-- a MIKO support engineer receives temporary `root` access;
-- the engineer's terminal activity may be recorded for security and audit;
+- a MIKO support engineer receives temporary `root` access over SSH;
+- the engineer also receives temporary full administrator access to the web
+  interface through a one-time login and password;
+- SSH activity is fully recorded; web-interface activity is logged, but the
+  screen is not recorded;
 - the session can last for up to eight hours;
 - only one support session can be active on the PBX.
 
@@ -59,15 +65,39 @@ returns to the off state.
 The same cleanup runs after a failure, unexpected disconnection, PBX reboot,
 module disable, module uninstall, or the fixed eight-hour expiry.
 
+## Web access for the engineer
+
+When the session is active, the page also shows a one-time web login and
+password. Dictate them to the MIKO specialist; they let the engineer sign in to
+this PBX web interface as a full administrator through the MIKO support gateway.
+
+- The credential works only while the session is active and is revoked with the
+  rest of the session on stop, expiry, disconnect, reboot, disable, or
+  uninstall.
+- Only the password hash is stored in the database. The plaintext password is
+  kept in a private runtime file readable by the web-server user so the page can
+  show it again after a reload; it is readable for the whole active session and
+  is deleted on cleanup.
+- The engineer's web login appears in the MikoPBX logs, providing attribution
+  that the loopback path does not.
+- The web tunnel forwards to the real station address, not to loopback, so the
+  ephemeral password is always required; no unauthenticated bypass is used.
+- Older support servers that offer only SSH degrade gracefully: the session
+  stays SSH-only and no web credential is issued.
+
 ## Security and privacy
 
 - SSH host verification is pinned; it is never disabled.
 - HTTPS certificate verification remains enabled.
 - Private SSH keys are temporary and are never stored in the database.
-- The support code, private key, raw SSH output, PBX inventory, call data, and
-  configuration are not sent to contact or analytics services.
+- The web password is stored only as a hash in the database; its plaintext lives
+  in a private runtime file readable by the web-server user and is extractable
+  for the whole active session.
+- The support code, web password hash, private key, raw SSH output, PBX
+  inventory, call data, and configuration are not sent to contact or analytics
+  services.
 - The tunnel service can see the public source IP of the outbound connection.
-- Support contact links never include the temporary session code.
+- Support contact links never include the temporary session code or credential.
 
 ## Network requirements
 

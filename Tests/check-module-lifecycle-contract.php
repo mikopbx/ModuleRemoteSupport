@@ -88,6 +88,16 @@ final class LifecycleRuntime implements RemoteSupportRuntimeInterface
         return '/runtime/known_hosts';
     }
 
+    public function writeWebCredential(string $login, string $password): void
+    {
+        $this->events[] = 'runtime:web-credential';
+    }
+
+    public function readWebCredential(): ?array
+    {
+        return null;
+    }
+
     public function cleanup(): void
     {
         $this->events[] = 'runtime:cleanup';

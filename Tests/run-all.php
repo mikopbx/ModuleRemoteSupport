@@ -8,6 +8,8 @@ $tests = [
     __DIR__ . '/check-lobby-protocol-contract.php',
     __DIR__ . '/check-ssh-process-contract.php',
     __DIR__ . '/check-authorized-keys-contract.php',
+    __DIR__ . '/check-web-credential-contract.php',
+    __DIR__ . '/check-web-auth-contract.php',
     __DIR__ . '/check-worker-lifecycle-contract.php',
     __DIR__ . '/check-api-contract.php',
     __DIR__ . '/check-ui-contract.php',

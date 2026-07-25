@@ -14,6 +14,10 @@ final class SessionRepository
     private const int ROW_ID = 1;
     private const string SESSION_ID_PATTERN = '/\A[a-zA-Z0-9-]{16,64}\z/D';
     private const string ERROR_CODE_PATTERN = '/\A[a-z][a-z0-9_]{0,63}\z/D';
+    private const string WEB_LOGIN_PATTERN = '/\A'
+        . RemoteSupportConfig::WEB_LOGIN_PREFIX
+        . '[a-z0-9]{8,64}\z/D';
+    private const string WEB_PASSWORD_HASH_PATTERN = '/\A\$[ -~]{1,254}\z/D';
 
     /** @var Closure(): RemoteSupportSession */
     private readonly Closure $load;
@@ -115,6 +119,8 @@ final class SessionRepository
         int $tunnelPort,
         int $startedAt,
         int $expiresAt,
+        string $webLogin = '',
+        string $webPasswordHash = '',
     ): RemoteSupportSession {
         if (
             preg_match('/\A[A-Z0-9]{3}-[A-Z0-9]{3}\z/D', $code) !== 1
@@ -127,6 +133,16 @@ final class SessionRepository
         ) {
             throw new SessionTransitionException('Invalid active-session data');
         }
+        if (
+            ($webLogin === '') !== ($webPasswordHash === '')
+            || ($webLogin !== '' && preg_match(self::WEB_LOGIN_PATTERN, $webLogin) !== 1)
+            || (
+                $webPasswordHash !== ''
+                && preg_match(self::WEB_PASSWORD_HASH_PATTERN, $webPasswordHash) !== 1
+            )
+        ) {
+            throw new SessionTransitionException('Invalid web-credential data');
+        }
 
         return $this->mutate(
             static function (RemoteSupportSession $session) use (
@@ -135,6 +151,8 @@ final class SessionRepository
                 $tunnelPort,
                 $startedAt,
                 $expiresAt,
+                $webLogin,
+                $webPasswordHash,
             ): void {
                 $status = SessionStatus::from((string)$session->status);
                 if ($status !== SessionStatus::STARTING) {
@@ -148,6 +166,8 @@ final class SessionRepository
                 $session->started_at = (string)$startedAt;
                 $session->expires_at = (string)$expiresAt;
                 $session->error_code = '';
+                $session->web_login = $webLogin;
+                $session->web_password_hash = $webPasswordHash;
             },
         );
     }
@@ -180,6 +200,8 @@ final class SessionRepository
                 $session->tunnel_port = '';
                 $session->started_at = '';
                 $session->expires_at = '';
+                $session->web_login = '';
+                $session->web_password_hash = '';
             },
         );
     }
@@ -237,6 +259,8 @@ final class SessionRepository
         $session->started_at = '';
         $session->expires_at = '';
         $session->error_code = '';
+        $session->web_login = '';
+        $session->web_password_hash = '';
     }
 
     private static function invalidTransition(

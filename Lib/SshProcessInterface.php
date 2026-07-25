@@ -12,5 +12,6 @@ interface SshProcessInterface
         LobbyAllocation $allocation,
         string $privateKey,
         string $knownHosts,
+        ?WebForwardTarget $webTarget = null,
     ): ProcessHandle;
 }

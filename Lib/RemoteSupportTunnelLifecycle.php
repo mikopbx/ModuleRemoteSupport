@@ -20,9 +20,13 @@ final class RemoteSupportTunnelLifecycle
     /** @var Closure(ProcessHandle): bool */
     private readonly Closure $confirmTunnel;
 
+    /** @var Closure(): ?WebForwardTarget */
+    private readonly Closure $webTargetResolver;
+
     /**
      * @param null|Closure(): int $clock
      * @param null|Closure(ProcessHandle): bool $confirmTunnel
+     * @param null|Closure(): ?WebForwardTarget $webTargetResolver
      */
     public function __construct(
         private readonly SessionRepository $repository = new SessionRepository(),
@@ -31,9 +35,13 @@ final class RemoteSupportTunnelLifecycle
         private readonly SshProcessInterface $ssh = new SshProcess(),
         ?Closure $clock = null,
         ?Closure $confirmTunnel = null,
+        ?Closure $webTargetResolver = null,
+        private readonly WebCredentialGenerator $webCredentials = new WebCredentialGenerator(),
     ) {
         $this->clock = $clock ?? time(...);
         $this->confirmTunnel = $confirmTunnel ?? $this->waitForTunnel(...);
+        $this->webTargetResolver = $webTargetResolver
+            ?? static fn(): ?WebForwardTarget => WebForwardTarget::fromPbxConfiguration();
     }
 
     public function start(string $sessionId): RemoteSupportSession
@@ -65,6 +73,25 @@ final class RemoteSupportTunnelLifecycle
                 ),
             );
 
+            $webTarget = null;
+            $webLogin = '';
+            $webPasswordHash = '';
+            if ($allocation->webTunnelPort !== null) {
+                $errorCode = 'web_credential_failed';
+                // A station without a resolvable non-loopback admin address
+                // degrades to an SSH-only session instead of failing support.
+                $webTarget = ($this->webTargetResolver)();
+                if ($webTarget !== null) {
+                    $credential = $this->webCredentials->generate();
+                    $this->runtime->writeWebCredential(
+                        $credential->login,
+                        $credential->password,
+                    );
+                    $webLogin = $credential->login;
+                    $webPasswordHash = $credential->passwordHash;
+                }
+            }
+
             $errorCode = 'key_install_failed';
             $this->authorizedKeys->install($sessionId);
 
@@ -73,6 +100,7 @@ final class RemoteSupportTunnelLifecycle
                 $allocation,
                 $this->runtime->privateKeyPath(),
                 $this->runtime->knownHostsPath(),
+                $webTarget,
             );
             if (!(($this->confirmTunnel)($this->tunnel))) {
                 $errorCode = 'tunnel_not_established';
@@ -87,6 +115,8 @@ final class RemoteSupportTunnelLifecycle
                 tunnelPort: $allocation->tunnelPort,
                 startedAt: $startedAt,
                 expiresAt: $startedAt + RemoteSupportConfig::SESSION_TTL_SECONDS,
+                webLogin: $webLogin,
+                webPasswordHash: $webPasswordHash,
             );
         } catch (Throwable) {
             return $this->failAndCleanup($errorCode);

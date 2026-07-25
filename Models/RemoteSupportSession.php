@@ -57,6 +57,16 @@ final class RemoteSupportSession extends ModulesModelsBase
     public ?string $error_code = '';
 
     /**
+     * @Column(type="string", nullable=true)
+     */
+    public ?string $web_login = '';
+
+    /**
+     * @Column(type="string", nullable=true)
+     */
+    public ?string $web_password_hash = '';
+
+    /**
      * @Column(type="integer", nullable=false)
      */
     public ?string $updated_at = '0';

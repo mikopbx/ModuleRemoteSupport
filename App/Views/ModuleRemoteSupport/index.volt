@@ -13,6 +13,7 @@
     <section class="remote-support-state" data-state-view="off" hidden>
         <div class="ui warning message remote-support-consent">
             <p>{{ t._('module_remote_support_ConsentRoot') }}</p>
+            <p>{{ t._('module_remote_support_ConsentWebAdmin') }}</p>
             <p>{{ t._('module_remote_support_ConsentEightHours') }}</p>
             <p>{{ t._('module_remote_support_ConsentRecording') }}</p>
         </div>
@@ -41,8 +42,37 @@
             </button>
             <div id="remote-support-countdown" class="remote-support-countdown"></div>
         </div>
+        <div id="remote-support-web-access" class="remote-support-web-access" hidden>
+            <div class="remote-support-web-title">
+                {{ t._('module_remote_support_WebAccessTitle') }}
+            </div>
+            <p class="remote-support-web-instruction">
+                {{ t._('module_remote_support_WebInstruction') }}
+            </p>
+            <div class="remote-support-web-field">
+                <span class="remote-support-web-label">
+                    {{ t._('module_remote_support_WebLoginLabel') }}
+                </span>
+                <code id="remote-support-web-login" class="remote-support-web-value"></code>
+                <button id="remote-support-web-copy-login" class="ui basic tiny button" type="button">
+                    <i class="copy outline icon"></i>
+                    {{ t._('module_remote_support_Copy') }}
+                </button>
+            </div>
+            <div class="remote-support-web-field">
+                <span class="remote-support-web-label">
+                    {{ t._('module_remote_support_WebPasswordLabel') }}
+                </span>
+                <code id="remote-support-web-password" class="remote-support-web-value"></code>
+                <button id="remote-support-web-copy-password" class="ui basic tiny button" type="button">
+                    <i class="copy outline icon"></i>
+                    {{ t._('module_remote_support_Copy') }}
+                </button>
+            </div>
+        </div>
         <div class="ui warning message remote-support-consent">
             <p>{{ t._('module_remote_support_ConsentRoot') }}</p>
+            <p>{{ t._('module_remote_support_ConsentWebAdmin') }}</p>
             <p>{{ t._('module_remote_support_ConsentRecording') }}</p>
         </div>
         <button id="remote-support-stop" class="ui negative button" type="button">

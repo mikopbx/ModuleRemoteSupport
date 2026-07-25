@@ -48,6 +48,7 @@ foreach (
         'module_remote_support_ConsentRoot',
         'module_remote_support_ConsentEightHours',
         'module_remote_support_ConsentRecording',
+        'module_remote_support_ConsentWebAdmin',
     ] as $consentKey
 ) {
     contractAssert(str_contains($view, $consentKey), 'consent includes ' . $consentKey);
@@ -61,10 +62,25 @@ foreach (
         'remote-support-retry',
         'remote-support-phone',
         'remote-support-telegram',
+        'remote-support-web-access',
+        'remote-support-web-login',
+        'remote-support-web-password',
+        'remote-support-web-copy-login',
+        'remote-support-web-copy-password',
     ] as $controlId
 ) {
     contractAssert(str_contains($view, 'id="' . $controlId . '"'), $controlId . ' exists');
 }
+
+contractAssert(
+    str_contains($view, 'module_remote_support_WebInstruction'),
+    'active state explains how to use the web credential',
+);
+contractAssert(
+    str_contains($view, 'module_remote_support_WebLoginLabel')
+        && str_contains($view, 'module_remote_support_WebPasswordLabel'),
+    'web credential fields are labelled',
+);
 
 contractAssert(
     !str_contains(
@@ -180,6 +196,22 @@ contractAssert(!str_contains($js, '?code='), 'code is never placed in a query st
 contractAssert(
     !preg_match('/code.{0,80}href|href.{0,80}code/is', $js),
     'code is never appended to href',
+);
+contractAssert(
+    str_contains($js, 'webLogin') && str_contains($js, 'webPassword'),
+    'JS renders the ephemeral web credential',
+);
+contractAssert(
+    !preg_match('/webPassword.{0,80}href|href.{0,80}webPassword/is', $js),
+    'web password is never appended to href',
+);
+contractAssert(
+    !preg_match('/webLogin.{0,80}href|href.{0,80}webLogin/is', $js),
+    'web login is never appended to href',
+);
+contractAssert(
+    !str_contains($js, '?webPassword=') && !str_contains($js, '?webLogin='),
+    'web credential is never placed in a query string',
 );
 contractAssert(
     str_contains($js, "['starting', 'active', 'stopping'].includes(state)"),

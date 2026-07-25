@@ -47,6 +47,7 @@ final class SshProcess implements SshProcessInterface
         LobbyAllocation $allocation,
         string $privateKey,
         string $knownHosts,
+        ?WebForwardTarget $webTarget = null,
     ): ProcessHandle {
         if (
             $allocation->tunnelUser !== 'lobbytun'
@@ -54,6 +55,26 @@ final class SshProcess implements SshProcessInterface
             || $allocation->tunnelPort > 22_999
         ) {
             throw new RuntimeException('Invalid tunnel allocation');
+        }
+
+        $webForwardArguments = [];
+        if ($allocation->webTunnelPort !== null && $webTarget !== null) {
+            if (
+                $allocation->webTunnelPort < RemoteSupportConfig::WEB_TUNNEL_PORT_MIN
+                || $allocation->webTunnelPort > RemoteSupportConfig::WEB_TUNNEL_PORT_MAX
+            ) {
+                throw new RuntimeException('Invalid tunnel allocation');
+            }
+
+            $webForwardArguments = [
+                '-R',
+                sprintf(
+                    '127.0.0.1:%d:%s:%d',
+                    $allocation->webTunnelPort,
+                    $webTarget->stationIp,
+                    $webTarget->httpsPort,
+                ),
+            ];
         }
 
         $arguments = [
@@ -64,6 +85,7 @@ final class SshProcess implements SshProcessInterface
             '-T',
             '-R',
             sprintf('127.0.0.1:%d:127.0.0.1:22', $allocation->tunnelPort),
+            ...$webForwardArguments,
             $allocation->tunnelUser . '@' . RemoteSupportConfig::SUPPORT_HOST,
         ];
 

@@ -29,6 +29,9 @@ const moduleRemoteSupport = {
     $code: null,
     $countdown: null,
     $error: null,
+    $webAccess: null,
+    $webLogin: null,
+    $webPassword: null,
 
     /**
      * Initialize cached elements, handlers, and initial state loading.
@@ -41,6 +44,9 @@ const moduleRemoteSupport = {
         moduleRemoteSupport.$code = $('#remote-support-code');
         moduleRemoteSupport.$countdown = $('#remote-support-countdown');
         moduleRemoteSupport.$error = $('#remote-support-error');
+        moduleRemoteSupport.$webAccess = $('#remote-support-web-access');
+        moduleRemoteSupport.$webLogin = $('#remote-support-web-login');
+        moduleRemoteSupport.$webPassword = $('#remote-support-web-password');
 
         $('#remote-support-start, #remote-support-retry').on('click', () => {
             moduleRemoteSupport.mutate('start');
@@ -49,7 +55,16 @@ const moduleRemoteSupport = {
             moduleRemoteSupport.mutate('stop');
         });
         $('#remote-support-copy').on('click', () => {
-            moduleRemoteSupport.copyCurrentCode();
+            moduleRemoteSupport.copyValue(moduleRemoteSupport.current
+                ? moduleRemoteSupport.current.code : '');
+        });
+        $('#remote-support-web-copy-login').on('click', () => {
+            moduleRemoteSupport.copyValue(moduleRemoteSupport.current
+                ? moduleRemoteSupport.current.webLogin : '');
+        });
+        $('#remote-support-web-copy-password').on('click', () => {
+            moduleRemoteSupport.copyValue(moduleRemoteSupport.current
+                ? moduleRemoteSupport.current.webPassword : '');
         });
 
         moduleRemoteSupport.loadStatus();
@@ -116,6 +131,8 @@ const moduleRemoteSupport = {
             code: typeof data.code === 'string' ? data.code : '',
             expiresAt: Number.isInteger(data.expiresAt) ? data.expiresAt : 0,
             errorCode: typeof data.errorCode === 'string' ? data.errorCode : '',
+            webLogin: typeof data.webLogin === 'string' ? data.webLogin : '',
+            webPassword: typeof data.webPassword === 'string' ? data.webPassword : '',
         };
 
         moduleRemoteSupport.$views.prop('hidden', true);
@@ -125,8 +142,27 @@ const moduleRemoteSupport = {
         moduleRemoteSupport.$error.text(
             moduleRemoteSupport.errorLabel(moduleRemoteSupport.current.errorCode)
         );
+        moduleRemoteSupport.renderWebAccess();
         moduleRemoteSupport.updateCountdown();
         moduleRemoteSupport.schedulePolling(state);
+    },
+
+    /**
+     * Show the ephemeral web credential only while it exists on an active session.
+     * @returns {void}
+     */
+    renderWebAccess() {
+        const hasWebAccess = moduleRemoteSupport.current
+            && moduleRemoteSupport.current.state === 'active'
+            && moduleRemoteSupport.current.webLogin !== '';
+        moduleRemoteSupport.$webAccess.prop('hidden', !hasWebAccess);
+        if (!hasWebAccess) {
+            moduleRemoteSupport.$webLogin.text('');
+            moduleRemoteSupport.$webPassword.text('');
+            return;
+        }
+        moduleRemoteSupport.$webLogin.text(moduleRemoteSupport.current.webLogin);
+        moduleRemoteSupport.$webPassword.text(moduleRemoteSupport.current.webPassword);
     },
 
     /**
@@ -185,15 +221,15 @@ const moduleRemoteSupport = {
     },
 
     /**
-     * Copy the current code without placing it in a URL or log.
+     * Copy a value without placing it in a URL or log.
+     * @param {string} value - Sensitive value to copy.
      * @returns {void}
      */
-    copyCurrentCode() {
-        if (!moduleRemoteSupport.current || moduleRemoteSupport.current.code === '') {
+    copyValue(value) {
+        if (typeof value !== 'string' || value === '') {
             return;
         }
 
-        const value = moduleRemoteSupport.current.code;
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(value).then(() => {
                 moduleRemoteSupport.$live.text(globalTranslate.module_remote_support_Copied);
@@ -207,7 +243,7 @@ const moduleRemoteSupport = {
 
     /**
      * Copy through a temporary, non-visible textarea.
-     * @param {string} value - Session code.
+     * @param {string} value - Sensitive value to copy.
      * @returns {void}
      */
     copyWithFallback(value) {
@@ -262,6 +298,7 @@ const moduleRemoteSupport = {
             runtime_failed: globalTranslate.module_remote_support_ErrorRuntime,
             allocation_failed: globalTranslate.module_remote_support_ErrorAllocation,
             key_install_failed: globalTranslate.module_remote_support_ErrorKeyInstall,
+            web_credential_failed: globalTranslate.module_remote_support_ErrorWebCredential,
             tunnel_start_failed: globalTranslate.module_remote_support_ErrorTunnelStart,
             tunnel_not_established: globalTranslate.module_remote_support_ErrorTunnelStart,
             tunnel_disconnected: globalTranslate.module_remote_support_ErrorDisconnected,

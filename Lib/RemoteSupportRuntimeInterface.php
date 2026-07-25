@@ -18,6 +18,13 @@ interface RemoteSupportRuntimeInterface
 
     public function knownHostsPath(): string;
 
+    public function writeWebCredential(string $login, string $password): void;
+
+    /**
+     * @return null|array{login: string, password: string}
+     */
+    public function readWebCredential(): ?array;
+
     public function cleanup(): void;
 
     public function cleanupStale(): void;

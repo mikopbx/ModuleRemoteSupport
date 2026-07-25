@@ -14,6 +14,7 @@ final readonly class LobbyAllocation
         public int $tunnelPort,
         public string $tunnelUser,
         public DateTimeImmutable $expiresAt,
+        public ?int $webTunnelPort = null,
     ) {
     }
 }

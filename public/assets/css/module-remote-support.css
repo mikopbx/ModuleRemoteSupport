@@ -94,6 +94,49 @@
     margin-top: 1rem;
 }
 
+.module-remote-support .remote-support-web-access {
+    background: #f8f9fa;
+    border: 1px solid #e0e1e2;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+}
+
+.module-remote-support .remote-support-web-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.module-remote-support .remote-support-web-instruction {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.module-remote-support .remote-support-web-field {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.module-remote-support .remote-support-web-label {
+    color: #767676;
+    flex: 0 0 auto;
+    min-width: 6rem;
+}
+
+.module-remote-support .remote-support-web-value {
+    background: #fff;
+    border: 1px solid #e0e1e2;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    overflow-wrap: anywhere;
+    padding: 0.35rem 0.6rem;
+}
+
 .module-remote-support .remote-support-consent p:last-child {
     margin-bottom: 0;
 }

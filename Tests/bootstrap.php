@@ -22,6 +22,56 @@ spl_autoload_register(
     },
 );
 
+if (!class_exists('MikoPBX\\AdminCabinet\\Controllers\\SessionController', false)) {
+    class TestSessionController
+    {
+        public const string SESSION_ID = 'authAdminCabinet';
+        public const string ROLE = 'role';
+        public const string HOME_PAGE = 'homePage';
+        public const string USER_NAME = 'userName';
+    }
+
+    class_alias(
+        TestSessionController::class,
+        'MikoPBX\\AdminCabinet\\Controllers\\SessionController',
+    );
+}
+
+if (!class_exists('MikoPBX\\Common\\Providers\\AclProvider', false)) {
+    class TestAclProvider
+    {
+        public const string ROLE_ADMINS = 'admins';
+        public const string ROLE_GUESTS = 'guests';
+    }
+
+    class_alias(
+        TestAclProvider::class,
+        'MikoPBX\\Common\\Providers\\AclProvider',
+    );
+}
+
+if (!class_exists('MikoPBX\\Core\\System\\Directories', false)) {
+    class TestDirectories
+    {
+        public const string CORE_TEMP_DIR = 'core.tempDir';
+
+        public static function getDir(string $dirConstant): string
+        {
+            $directory = sys_get_temp_dir() . '/module-remote-support-tests';
+            if (!is_dir($directory)) {
+                mkdir($directory, 0700, true);
+            }
+
+            return $directory;
+        }
+    }
+
+    class_alias(
+        TestDirectories::class,
+        'MikoPBX\\Core\\System\\Directories',
+    );
+}
+
 if (!class_exists('MikoPBX\\Modules\\Models\\ModulesModelsBase', false)) {
     class TestModulesModelsBase
     {
