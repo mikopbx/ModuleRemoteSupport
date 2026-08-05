@@ -11,6 +11,7 @@ use Modules\ModuleRemoteSupport\Lib\RemoteSupportTunnelLifecycle;
 use Modules\ModuleRemoteSupport\Lib\SessionRepository;
 use Modules\ModuleRemoteSupport\Lib\SessionStatus;
 use Modules\ModuleRemoteSupport\Lib\SshProcessInterface;
+use Modules\ModuleRemoteSupport\Lib\StationSshUser;
 use Modules\ModuleRemoteSupport\Lib\WebCredentialGenerator;
 use Modules\ModuleRemoteSupport\Lib\WebForwardTarget;
 use Modules\ModuleRemoteSupport\Models\RemoteSupportSession;
@@ -158,6 +159,7 @@ final class FakeSshProcess implements SshProcessInterface
     public bool $allocateV2 = false;
     public ?FakeTunnelHandle $handle = null;
     public ?WebForwardTarget $lastWebTarget = null;
+    public string $lastStationUser = '';
 
     /**
      * @param list<string> $events
@@ -167,9 +169,13 @@ final class FakeSshProcess implements SshProcessInterface
         $this->events =& $events;
     }
 
-    public function allocate(string $privateKey, string $knownHosts): string
-    {
+    public function allocate(
+        string $privateKey,
+        string $knownHosts,
+        StationSshUser $stationUser,
+    ): string {
         $this->events[] = 'ssh:allocate';
+        $this->lastStationUser = $stationUser->login;
         if ($this->failAllocation) {
             throw new RuntimeException('allocation failed');
         }
@@ -471,6 +477,7 @@ function webLifecycle(
         static fn(ProcessHandle $handle): bool => $handle->isRunning(),
         static fn(): ?WebForwardTarget => $resolvedTarget,
         $credentials,
+        static fn(): StationSshUser => new StationSshUser('mikoadmin'),
     );
 }
 
@@ -490,6 +497,11 @@ $webLifecycle = webLifecycle(
 );
 $webActive = $webLifecycle->start($sessionId);
 contractAssertSame(SessionStatus::ACTIVE->value, $webActive->status, 'v2 session becomes active');
+contractAssertSame(
+    'mikoadmin',
+    $webSsh->lastStationUser,
+    'the configured station account reaches the allocation request',
+);
 contractAssert(
     preg_match('/\Amiko-support-[a-z0-9]{16}\z/D', (string)$webActive->web_login) === 1,
     'v2 session stores a generated web login',

@@ -25,12 +25,19 @@ final class SshProcess implements SshProcessInterface
         $this->spawn = $spawn ?? $this->spawnCommand(...);
     }
 
-    public function allocate(string $privateKey, string $knownHosts): string
-    {
+    public function allocate(
+        string $privateKey,
+        string $knownHosts,
+        StationSshUser $stationUser,
+    ): string {
         $arguments = [
             ...$this->commonArguments($privateKey, $knownHosts),
             '-T',
             'lobbyalloc@' . RemoteSupportConfig::SUPPORT_HOST,
+            // Remote command, not a shell command: the forced command on the
+            // server reads it from SSH_ORIGINAL_COMMAND to select the protocol
+            // version. Without it the server answers v1 and there is no web port.
+            $stationUser->allocationRequest(),
         ];
         $result = ($this->run)($arguments);
         if (

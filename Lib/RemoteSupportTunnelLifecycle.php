@@ -23,10 +23,14 @@ final class RemoteSupportTunnelLifecycle
     /** @var Closure(): ?WebForwardTarget */
     private readonly Closure $webTargetResolver;
 
+    /** @var Closure(): StationSshUser */
+    private readonly Closure $stationUserResolver;
+
     /**
      * @param null|Closure(): int $clock
      * @param null|Closure(ProcessHandle): bool $confirmTunnel
      * @param null|Closure(): ?WebForwardTarget $webTargetResolver
+     * @param null|Closure(): StationSshUser $stationUserResolver
      */
     public function __construct(
         private readonly SessionRepository $repository = new SessionRepository(),
@@ -37,11 +41,14 @@ final class RemoteSupportTunnelLifecycle
         ?Closure $confirmTunnel = null,
         ?Closure $webTargetResolver = null,
         private readonly WebCredentialGenerator $webCredentials = new WebCredentialGenerator(),
+        ?Closure $stationUserResolver = null,
     ) {
         $this->clock = $clock ?? time(...);
         $this->confirmTunnel = $confirmTunnel ?? $this->waitForTunnel(...);
         $this->webTargetResolver = $webTargetResolver
             ?? static fn(): ?WebForwardTarget => WebForwardTarget::fromPbxConfiguration();
+        $this->stationUserResolver = $stationUserResolver
+            ?? static fn(): StationSshUser => StationSshUser::fromPbxConfiguration();
     }
 
     public function start(string $sessionId): RemoteSupportSession
@@ -70,6 +77,7 @@ final class RemoteSupportTunnelLifecycle
                 $this->ssh->allocate(
                     $this->runtime->privateKeyPath(),
                     $this->runtime->knownHostsPath(),
+                    ($this->stationUserResolver)(),
                 ),
             );
 

@@ -6,7 +6,11 @@ namespace Modules\ModuleRemoteSupport\Lib;
 
 interface SshProcessInterface
 {
-    public function allocate(string $privateKey, string $knownHosts): string;
+    public function allocate(
+        string $privateKey,
+        string $knownHosts,
+        StationSshUser $stationUser,
+    ): string;
 
     public function startTunnel(
         LobbyAllocation $allocation,

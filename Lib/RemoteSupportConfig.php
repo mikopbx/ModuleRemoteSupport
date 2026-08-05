@@ -8,6 +8,7 @@ final class RemoteSupportConfig
 {
     public const string SUPPORT_HOST = 'support-tunnel.miko.ru';
     public const int SUPPORT_PORT = 34022;
+    public const int LOBBY_PROTOCOL_VERSION = 2;
     public const int WEB_TUNNEL_PORT_MIN = 23_000;
     public const int WEB_TUNNEL_PORT_MAX = 23_999;
     public const string WEB_LOGIN_PREFIX = 'miko-support-';

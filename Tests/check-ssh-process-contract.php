@@ -6,6 +6,7 @@ use Modules\ModuleRemoteSupport\Lib\LobbyAllocation;
 use Modules\ModuleRemoteSupport\Lib\ProcessHandle;
 use Modules\ModuleRemoteSupport\Lib\RemoteSupportConfig;
 use Modules\ModuleRemoteSupport\Lib\SshProcess;
+use Modules\ModuleRemoteSupport\Lib\StationSshUser;
 use Modules\ModuleRemoteSupport\Lib\WebForwardTarget;
 
 require_once __DIR__ . '/bootstrap.php';
@@ -37,7 +38,7 @@ $knownHosts = '/run/mikopbx/remote-support/session/known_hosts';
 
 contractAssertSame(
     $allocationOutput,
-    $ssh->allocate($privateKey, $knownHosts),
+    $ssh->allocate($privateKey, $knownHosts, new StationSshUser('mikoadmin')),
     'allocation returns bounded stdout',
 );
 
@@ -78,6 +79,17 @@ foreach ([$allocateArguments, $tunnelArguments] as $arguments) {
 contractAssert(
     in_array('lobbyalloc@' . RemoteSupportConfig::SUPPORT_HOST, $allocateArguments, true),
     'allocation user and host are pinned',
+);
+// Without this request the server answers v1 and the whole web channel stays dark.
+contractAssertSame(
+    'protocol=2 station_user=mikoadmin',
+    $allocateArguments[array_key_last($allocateArguments)],
+    'the allocation asks for protocol v2 and names the station account',
+);
+contractAssertSame(
+    'lobbyalloc@' . RemoteSupportConfig::SUPPORT_HOST,
+    $allocateArguments[count($allocateArguments) - 2],
+    'the request follows the destination, so ssh treats it as the remote command',
 );
 contractAssert(
     in_array('ExitOnForwardFailure=yes', $tunnelArguments, true),
